@@ -1,4 +1,5 @@
 #include <stdio.h>
+<<<<<<< HEAD
 #include <stdlib.h>
 #include <string.h>
 
@@ -24,10 +25,28 @@ void addCustomer(struct Customer customers[], int *numCustomers) {
     customers[*numCustomers] = newCustomer;
     (*numCustomers)++;
 
+=======
+
+#define MAX_CUSTOMERS 100
+
+// Function to add a new customer
+void addCustomer(int ids[], char names[][50], char phoneNumbers[][15], float balances[], int *numCustomers) {
+    int id = *numCustomers + 1;
+    
+    printf("Enter customer name: ");
+    scanf("%s", names[*numCustomers]);
+    printf("Enter customer phone number: ");
+    scanf("%s", phoneNumbers[*numCustomers]);
+    balances[*numCustomers] = 0; // Initial balance
+    
+    ids[*numCustomers] = id;
+    (*numCustomers)++;
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
     printf("Customer added successfully!\n");
 }
 
 // Function to make a call and update balance
+<<<<<<< HEAD
 void makeCall(struct Customer customers[], int numCustomers) {
     int customerId;
     int callDuration;
@@ -35,10 +54,19 @@ void makeCall(struct Customer customers[], int numCustomers) {
     printf("Enter customer ID: ");
     scanf("%d", &customerId);
 
+=======
+void makeCall(int ids[], float balances[], int numCustomers) {
+    int customerId, callDuration;
+    
+    printf("Enter customer ID: ");
+    scanf("%d", &customerId);
+    
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
     if (customerId < 1 || customerId > numCustomers) {
         printf("Invalid customer ID!\n");
         return;
     }
+<<<<<<< HEAD
 
     printf("Enter call duration in minutes: ");
     scanf("%d", &callDuration);
@@ -46,20 +74,37 @@ void makeCall(struct Customer customers[], int numCustomers) {
     float callCost = callDuration * 0.50; // Assuming rate per minute is $0.50
     customers[customerId - 1].balance += callCost;
 
+=======
+    printf("Enter call duration in minutes: ");
+    scanf("%d", &callDuration);
+    
+    float callCost = callDuration * 0.50; // Assuming rate per minute is $0.50
+    balances[customerId - 1] += callCost;
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
     printf("Call made successfully!\n");
 }
 
 // Function to display customer information
+<<<<<<< HEAD
 void displayCustomerInfo(struct Customer customers[], int numCustomers) {
     int customerId;
 
     printf("Enter customer ID: ");
     scanf("%d", &customerId);
 
+=======
+void displayCustomerInfo(int ids[], char names[][50], char phoneNumbers[][15], float balances[], int numCustomers) {
+    int customerId;
+    
+    printf("Enter customer ID: ");
+    scanf("%d", &customerId);
+    
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
     if (customerId < 1 || customerId > numCustomers) {
         printf("Invalid customer ID!\n");
         return;
     }
+<<<<<<< HEAD
 
     struct Customer customer = customers[customerId - 1];
     printf("Customer ID: %d\n", customer.id);
@@ -73,6 +118,20 @@ int main() {
     int numCustomers = 0;
     int choice;
 
+=======
+    printf("Customer ID: %d\n", ids[customerId - 1]);
+    printf("Name: %s\n", names[customerId - 1]);
+    printf("Phone Number: %s\n", phoneNumbers[customerId - 1]);
+    printf("Balance: $%.2f\n", balances[customerId - 1]);
+}
+
+int main() {
+    int customerIds[MAX_CUSTOMERS];
+    char customerNames[MAX_CUSTOMERS][50];
+    char customerPhoneNumbers[MAX_CUSTOMERS][15];
+    float customerBalances[MAX_CUSTOMERS];
+    int numCustomers = 0, choice;
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
     do {
         printf("\nTelecom Billing System\n");
         printf("1. Add new customer\n");
@@ -81,6 +140,7 @@ int main() {
         printf("4. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
+<<<<<<< HEAD
 
         switch(choice) {
             case 1:
@@ -91,6 +151,18 @@ int main() {
                 break;
             case 3:
                 displayCustomerInfo(customers, numCustomers);
+=======
+        
+        switch(choice) {
+            case 1:
+                addCustomer(customerIds, customerNames, customerPhoneNumbers, customerBalances, &numCustomers);
+                break;
+            case 2:
+                makeCall(customerIds, customerBalances, numCustomers);
+                break;
+            case 3:
+                displayCustomerInfo(customerIds, customerNames, customerPhoneNumbers, customerBalances, numCustomers);
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
                 break;
             case 4:
                 printf("Exiting...\n");
@@ -99,7 +171,12 @@ int main() {
                 printf("Invalid choice!\n");
         }
     } while(choice != 4);
+<<<<<<< HEAD
 
     return 0;
 }
 
+=======
+    return 0;
+}
+>>>>>>> dba046ccab3573f79614508efd6482d39d16677c
